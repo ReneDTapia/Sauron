@@ -11,29 +11,34 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
+import type { Todo, Meta } from 'src/shared/types/models';
+import ExampleComponent from 'src/components/ExampleComponent.vue';
 
 const todos = ref<Todo[]>([
   {
     id: 1,
-    content: 'ct1'
+    content: 'ct1',
+    completed: false
   },
   {
     id: 2,
-    content: 'ct2'
+    content: 'ct2',
+    completed: true
   },
   {
     id: 3,
-    content: 'ct3'
+    content: 'ct3',
+    completed: false
   },
   {
     id: 4,
-    content: 'ct4'
+    content: 'ct4',
+    completed: false
   },
   {
     id: 5,
-    content: 'ct5'
+    content: 'ct5',
+    completed: true
   }
 ]);
 
