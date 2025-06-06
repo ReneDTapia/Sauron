@@ -1,0 +1,7 @@
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer circle (the "eye") -->
+  <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+  
+  <!-- Inner circle (the "pupil") -->
+  <circle cx="12" cy="12" r="3" fill="currentColor"/>
+</svg>

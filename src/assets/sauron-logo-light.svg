@@ -1,0 +1,18 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background square with gradient -->
+  <defs>
+    <linearGradient id="bgGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5f5f5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded square background -->
+  <rect x="0" y="0" width="48" height="48" rx="12" ry="12" fill="url(#bgGradientLight)"/>
+  
+  <!-- Outer circle (the "eye") -->
+  <circle cx="24" cy="24" r="16" fill="none" stroke="#000000" stroke-width="2.5"/>
+  
+  <!-- Inner circle (the "pupil") -->
+  <circle cx="24" cy="24" r="5" fill="#000000"/>
+</svg>
