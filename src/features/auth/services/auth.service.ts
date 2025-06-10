@@ -1,4 +1,4 @@
-import { ApiService } from 'src/app/services/api.service'
+import { ApiService } from 'src/services/api.service'
 import type { User } from 'src/shared/types/models'
 
 export interface LoginRequest {

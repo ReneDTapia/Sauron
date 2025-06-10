@@ -28,7 +28,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { useQuasar } from 'quasar';
-import { useAuthStore } from 'src/app/stores/auth';
+import { useAuthStore } from 'src/stores/auth';
 import RegisterForm from '../components/RegisterForm.vue';
 
 interface RegisterData {
@@ -43,9 +43,9 @@ const router = useRouter();
 const $q = useQuasar();
 const authStore = useAuthStore();
 
-const handleRegister = (data: RegisterData) => {
+const handleRegister = async (data: RegisterData) => {
   try {
-    authStore.register({
+    await authStore.register({
       name: data.name,
       email: data.email,
       password: data.password,

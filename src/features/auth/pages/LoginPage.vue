@@ -36,7 +36,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useQuasar } from 'quasar';
-import { useAuthStore } from 'src/app/stores/auth';
+import { useAuthStore } from 'src/stores/auth';
 import WelcomeScreen from '../components/WelcomeScreen.vue';
 import EmailLoginScreen from '../components/EmailLoginScreen.vue';
 import RegisterScreen from '../components/RegisterScreen.vue';
@@ -61,9 +61,9 @@ const authStore = useAuthStore();
 
 const currentScreen = ref<ScreenType>('welcome');
 
-const handleLogin = (data: LoginData) => {
+const handleLogin = async (data: LoginData) => {
   try {
-    authStore.login(data.email, data.password);
+    await authStore.login(data.email, data.password);
     
     $q.notify({
       type: 'positive',
@@ -71,7 +71,7 @@ const handleLogin = (data: LoginData) => {
       position: 'top',
     });
     
-    void router.push('/dashboard');
+    void router.push('/home');
   } catch (error) {
     console.error('Login error:', error);
     
