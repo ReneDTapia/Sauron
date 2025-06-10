@@ -1,10 +1,10 @@
 import type { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
-  // Redirect root to login
+  // Redirect root to home or login based on auth status
   {
     path: '/',
-    redirect: '/auth/login',
+    redirect: '/home',
   },
 
   // Authentication routes
@@ -25,17 +25,36 @@ const routes: RouteRecordRaw[] = [
     ],
   },
 
-  // Main app routes (will be populated later)
+  // Main app routes
   {
-    path: '/dashboard',
+    path: '/home',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { 
         path: '', 
-        name: 'dashboard',
-        component: () => import('pages/IndexPage.vue') 
+        name: 'home',
+        component: () => import('pages/HomePage.vue') 
       }
     ],
+  },
+
+  // Visitor QR route
+  {
+    path: '/visitor',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { 
+        path: '', 
+        name: 'visitor',
+        component: () => import('pages/VisitorPage.vue') 
+      }
+    ],
+  },
+
+  // Dashboard routes (redirect to home for backward compatibility)
+  {
+    path: '/dashboard',
+    redirect: '/home',
   },
 
   // Always leave this as last one,

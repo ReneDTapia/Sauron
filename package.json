@@ -7,7 +7,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "lint": "eslint -c ./eslint.config.js \"./src*/**/*.{ts,js,cjs,mjs,vue}\"",
+    "lint": "eslint -c ./eslint.config.js \"src/**/*.{ts,js,cjs,mjs,vue}\"",
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
@@ -15,11 +15,12 @@
     "postinstall": "quasar prepare"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.11.0",
     "@quasar/extras": "^1.16.4",
+    "@types/qrcode": "^1.5.5",
     "axios": "^1.9.0",
     "pinia": "^3.0.2",
     "pinia-plugin-persistedstate": "^4.3.0",
+    "qrcode": "^1.5.4",
     "quasar": "^2.16.0",
     "vue": "^3.4.18",
     "vue-router": "^4.0.12"
