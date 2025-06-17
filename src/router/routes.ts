@@ -30,11 +30,11 @@ const routes: RouteRecordRaw[] = [
     path: '/home',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { 
-        path: '', 
+      {
+        path: '',
         name: 'home',
-        component: () => import('pages/HomePage.vue') 
-      }
+        component: () => import('pages/HomePage.vue'),
+      },
     ],
   },
 
@@ -43,11 +43,24 @@ const routes: RouteRecordRaw[] = [
     path: '/visitor',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { 
-        path: '', 
+      {
+        path: '',
         name: 'visitor',
-        component: () => import('pages/VisitorPage.vue') 
-      }
+        component: () => import('pages/VisitorPage.vue'),
+      },
+    ],
+  },
+
+  // Profile route
+  {
+    path: '/profile',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'profile',
+        component: () => import('pages/ProfilePage.vue'),
+      },
     ],
   },
 

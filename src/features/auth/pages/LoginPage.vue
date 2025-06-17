@@ -2,16 +2,16 @@
   <div class="auth-flow">
     <Transition name="screen" mode="out-in">
       <!-- Welcome Screen -->
-      <WelcomeScreen 
+      <WelcomeScreen
         v-if="currentScreen === 'welcome'"
         key="welcome"
         @show-login="currentScreen = 'login'"
         @show-register="currentScreen = 'register'"
         @social-login="handleSocialLogin"
       />
-      
+
       <!-- Email Login -->
-      <EmailLoginScreen 
+      <EmailLoginScreen
         v-else-if="currentScreen === 'login'"
         key="login"
         @go-back="currentScreen = 'welcome'"
@@ -19,9 +19,9 @@
         @show-forgot-password="currentScreen = 'forgot'"
         @submit="handleLogin"
       />
-      
+
       <!-- Register -->
-      <RegisterScreen 
+      <RegisterScreen
         v-else-if="currentScreen === 'register'"
         key="register"
         @go-back="currentScreen = 'welcome'"
@@ -64,17 +64,17 @@ const currentScreen = ref<ScreenType>('welcome');
 const handleLogin = async (data: LoginData) => {
   try {
     await authStore.login(data.email, data.password);
-    
+
     $q.notify({
       type: 'positive',
       message: 'Login successful',
       position: 'top',
     });
-    
+
     void router.push('/home');
   } catch (error) {
     console.error('Login error:', error);
-    
+
     $q.notify({
       type: 'negative',
       message: 'Invalid credentials. Please try again.',
@@ -87,17 +87,17 @@ const handleRegister = (data: RegisterData) => {
   try {
     // TODO: Implement actual registration
     console.log('Register data:', data);
-    
+
     $q.notify({
       type: 'positive',
       message: 'Account created successfully',
       position: 'top',
     });
-    
+
     currentScreen.value = 'login';
   } catch (error) {
     console.error('Register error:', error);
-    
+
     $q.notify({
       type: 'negative',
       message: 'Failed to create account. Please try again.',
@@ -108,7 +108,7 @@ const handleRegister = (data: RegisterData) => {
 
 const handleSocialLogin = (provider: 'google' | 'facebook') => {
   console.log(`Social login with ${provider}`);
-  
+
   $q.notify({
     type: 'info',
     message: `${provider} login coming soon`,

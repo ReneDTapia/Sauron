@@ -1,7 +1,7 @@
 // Global design system colors
 :root {
   // Sauron Design System Colors
-  --color-obsidian: #1a1a1a;
+  --color-obsidian: #121212;
   --color-charcoal: #2d2d2d;
   --color-ember: #ff4500;
   --color-ember-light: #ff6b35;
@@ -30,7 +30,7 @@ body {
   --border-color: var(--color-charcoal);
   --tab-bar-bg: rgba(28, 28, 30, 0.8);
   --tab-bar-border: rgba(255, 255, 255, 0.1);
-  
+
   background-color: var(--bg-primary);
   color: var(--text-primary);
 }
@@ -61,7 +61,7 @@ body.body--dark {
   --border-color: var(--color-charcoal);
   --tab-bar-bg: rgba(28, 28, 30, 0.8);
   --tab-bar-border: rgba(255, 255, 255, 0.1);
-  
+
   background-color: var(--bg-primary);
   color: var(--text-primary);
 }
@@ -83,7 +83,8 @@ body.body--dark {
 }
 
 // Global body styling
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -104,15 +105,15 @@ html, body {
     background-color: var(--bg-card-solid) !important;
     border-color: var(--border-color) !important;
   }
-  
+
   .q-field__native {
     color: var(--text-primary) !important;
   }
-  
+
   .q-field__label {
     color: var(--text-secondary) !important;
   }
-  
+
   .q-field__append .q-icon {
     color: var(--text-secondary) !important;
   }

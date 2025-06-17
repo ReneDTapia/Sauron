@@ -16,7 +16,12 @@
 
 <style lang="scss" scoped>
 .auth-layout {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
   background: #ffffff;
 }
 
@@ -25,12 +30,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
 }
 
 .auth-container {
   width: 100%;
-  max-width: 400px;
 }
 
 // Dark mode support
@@ -40,7 +43,7 @@
   }
 }
 
-body.body--dark {
+body.body--dark-page {
   .auth-layout {
     background: #121212;
   }

@@ -4,7 +4,7 @@
     <div class="home__header">
       <div class="home__header-content">
         <div class="home__user-info">
-          <div class="home__avatar">
+          <div class="home__avatar" @click="goToProfile">
             <q-icon name="person" />
           </div>
           <div class="home__greeting">
@@ -100,6 +100,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useQuasar } from 'quasar';
 import { useAuthStore } from 'src/stores/auth';
 
 interface QuickAction {
@@ -113,6 +114,7 @@ interface QuickAction {
 }
 
 const router = useRouter();
+const $q = useQuasar();
 const authStore = useAuthStore();
 
 // Get user name for greeting
@@ -186,6 +188,9 @@ function handleActionClick(action: QuickAction) {
   }
 }
 
+function goToProfile() {
+  void router.push('/profile');
+}
 </script>
 
 <style lang="scss" scoped>
@@ -222,6 +227,16 @@ function handleActionClick(action: QuickAction) {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
 
     .q-icon {
       font-size: 24px;
@@ -264,7 +279,7 @@ function handleActionClick(action: QuickAction) {
       color: var(--text-secondary);
       font-size: 20px;
     }
-    
+
     &:hover .q-icon {
       color: var(--text-primary);
     }
