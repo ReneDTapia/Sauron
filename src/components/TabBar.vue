@@ -1,8 +1,8 @@
 <template>
   <div class="tab-bar">
     <div class="tab-bar__container">
-      <div 
-        v-for="tab in tabs" 
+      <div
+        v-for="tab in tabs"
         :key="tab.id"
         class="tab"
         :class="{ 'tab--active': tab.id === activeTab }"
@@ -34,7 +34,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  activeTab: 'home'
+  activeTab: 'home',
 });
 
 const emit = defineEmits<{
@@ -46,14 +46,14 @@ const tabs = ref<Tab[]>([
     id: 'home',
     icon: 'home',
     label: 'Home',
-    route: '/home'
+    route: '/home',
   },
   {
-    id: 'visitor',
-    icon: 'qr_code',
-    label: 'Visitor QR',
-    route: '/visitor'
-  }
+    id: 'qr_history',
+    icon: 'history',
+    label: 'QR History',
+    route: '/qrHistory',
+  },
 ]);
 
 function selectTab(tabId: string) {
