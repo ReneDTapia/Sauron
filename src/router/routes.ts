@@ -51,6 +51,18 @@ const routes: RouteRecordRaw[] = [
     ],
   },
 
+  {
+    path: '/qrHistory',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'qrHistory',
+        component: () => import('pages/QRHistoryPage.vue'),
+      },
+    ],
+  },
+
   // Profile route
   {
     path: '/profile',
