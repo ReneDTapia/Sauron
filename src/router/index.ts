@@ -36,12 +36,23 @@ export default defineRouter(function (/* { store, ssrContext } */) {
   Router.beforeEach((to, from, next) => {
     const authStore = useAuthStore();
     
+    // Debug navigation attempts to /home
+    if (to.path === '/home') {
+      console.log('Navigation to /home requested:', {
+        isAuthenticated: authStore.isAuthenticated,
+        user: !!authStore.user,
+        token: !!authStore.token,
+        from: from.path
+      });
+    }
+    
     // Routes that don't require authentication
     const publicRoutes = ['/auth/login', '/auth/register'];
     
     if (publicRoutes.includes(to.path)) {
       // If already authenticated, redirect to home
       if (authStore.isAuthenticated) {
+        console.log('Redirecting authenticated user from auth page to /home');
         next('/home');
       } else {
         next();
@@ -49,8 +60,10 @@ export default defineRouter(function (/* { store, ssrContext } */) {
     } else {
       // Routes that require authentication
       if (authStore.isAuthenticated) {
+        console.log('Allowing access to protected route:', to.path);
         next();
       } else {
+        console.log('Redirecting unauthenticated user to /auth/login');
         next('/auth/login');
       }
     }
