@@ -19,6 +19,27 @@ export interface RegisterRequest {
   confirmPassword: string
 }
 
+export interface OAuthRedirectResponse {
+  success: boolean
+  data: {
+    redirect_url: string
+    state: string
+  }
+}
+
+export interface OAuthCallbackRequest {
+  code: string
+  state: string
+}
+
+export interface OAuthStatusResponse {
+  is_oauth_user: boolean
+  oauth_provider: string | null
+  has_password: boolean
+  has_valid_token: boolean
+  can_unlink: boolean
+}
+
 class AuthService extends ApiService {
   async login(credentials: LoginRequest): Promise<LoginResponse> {
     return this.post<LoginResponse>('/auth/login', credentials)
@@ -34,6 +55,23 @@ class AuthService extends ApiService {
 
   async refreshToken(): Promise<{ access_token: string }> {
     return this.post('/auth/refresh')
+  }
+
+  // OAuth methods
+  async getOAuthRedirectUrl(provider: 'google' | 'facebook'): Promise<OAuthRedirectResponse> {
+    return this.get<OAuthRedirectResponse>(`/auth/oauth/${provider}/redirect`)
+  }
+
+  async handleOAuthCallback(provider: 'google' | 'facebook', data: OAuthCallbackRequest): Promise<LoginResponse> {
+    return this.post<LoginResponse>(`/auth/oauth/${provider}/callback`, data)
+  }
+
+  async getOAuthStatus(): Promise<OAuthStatusResponse> {
+    return this.get<OAuthStatusResponse>('/auth/oauth/status')
+  }
+
+  async unlinkOAuthProvider(): Promise<void> {
+    return this.delete('/auth/oauth/unlink')
   }
 }
 

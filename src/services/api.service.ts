@@ -16,9 +16,18 @@ export class ApiService {
   private setupInterceptors() {
     // Request interceptor for auth tokens
     this.client.interceptors.request.use((config) => {
-      const token = localStorage.getItem('access_token')
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`
+      // Get token from Pinia store persistence
+      const authData = localStorage.getItem('sauron-auth')
+      if (authData) {
+        try {
+          const parsed = JSON.parse(authData)
+          const token = parsed.token
+          if (token) {
+            config.headers.Authorization = `Bearer ${token}`
+          }
+        } catch (e) {
+          console.warn('Failed to parse auth data from localStorage')
+        }
       }
       return config
     })
