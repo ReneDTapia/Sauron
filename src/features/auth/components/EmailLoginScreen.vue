@@ -89,6 +89,13 @@
       </button>
     </form>
 
+    <!-- OAuth Options -->
+    <OAuthButtons
+      mode="login"
+      @success="handleOAuthSuccess"
+      @error="handleOAuthError"
+    />
+
     <!-- Footer -->
     <div class="footer">
       <span>Don't have an account?</span>
@@ -98,7 +105,10 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed } from 'vue';
+import { reactive, ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
+import OAuthButtons from './OAuthButtons.vue'
 
 interface LoginForm {
   email: string;
@@ -110,6 +120,9 @@ interface FormErrors {
   email?: string;
   password?: string;
 }
+
+const router = useRouter()
+const $q = useQuasar()
 
 const emit = defineEmits<{
   goBack: [];
@@ -178,6 +191,26 @@ const handleSubmit = () => {
     }, 1000);
   }
 };
+
+function handleOAuthSuccess(user: any): void {
+  $q.notify({
+    type: 'positive',
+    message: 'Successfully logged in!',
+    position: 'top'
+  })
+  
+  void router.push('/home')
+}
+
+function handleOAuthError(error: Error): void {
+  console.error('OAuth login error:', error)
+  
+  $q.notify({
+    type: 'negative',
+    message: error.message || 'Login failed. Please try again.',
+    position: 'top'
+  })
+}
 </script>
 
 <style lang="scss" scoped>
